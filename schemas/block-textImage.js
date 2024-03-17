@@ -1,9 +1,12 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
+import { PresentationIcon } from '@sanity/icons'
+
 
 export default defineType({
-  name: 'post',
-  title: 'Post',
+  name: 'blockTextImage',
+  title: 'Text Image Block',
   type: 'document',
+  icon: PresentationIcon,
   fields: [
     defineField({
       name: 'title',
@@ -18,12 +21,6 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-    }),
-    defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: {type: 'author'},
     }),
     defineField({
       name: 'mainImage',
@@ -44,22 +41,12 @@ export default defineType({
       title: 'Published at',
       type: 'datetime',
     }),
-    defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
-    }),
   ],
 
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
       media: 'mainImage',
-    },
-    prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
     },
   },
 })

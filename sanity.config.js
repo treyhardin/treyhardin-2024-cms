@@ -2,6 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
+import { dataStructure } from './schemas/structure'
 
 export default defineConfig({
   name: 'default',
@@ -10,7 +11,12 @@ export default defineConfig({
   projectId: 'y3yrwkpj',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: dataStructure,
+    }), 
+    visionTool()
+  ],
 
   schema: {
     types: schemaTypes,
